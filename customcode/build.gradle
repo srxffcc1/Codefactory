@@ -1,0 +1,17 @@
+apply plugin: 'java'
+
+sourceCompatibility = 1.7
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile project(':helppdf')
+//    compile project(':javacommon')
+//    // https://mvnrepository.com/artifact/com.qcloud/cos_api
+//    compile group: 'com.qcloud', name: 'cos_api', version: '5.4.9'
+
+    compile 'com.sixdown.javacommon:javacommon:1.0.4'
+}
