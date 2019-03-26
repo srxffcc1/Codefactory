@@ -1,5 +1,7 @@
 package com.test;
 
+import cn.com.cjf.CJFBeanFactory;
+import cn.com.cjf.ChineseJF;
 import com.codefactory.abstracts.ParseBase;
 import com.codefactory.intface.CallBack;
 import com.codefactory.node.XmlNode;
@@ -17,19 +19,57 @@ import java.util.regex.Pattern;
 
 public class StringTest {
     public static void main(String[] args) {
-        int result=0;
-        String resultstring="PrinterShare_Crack16.app";
-        Pattern pattern=Pattern.compile(".*?(\\d+).+");
-        Matcher matcher=pattern.matcher(resultstring);
-        if(matcher.find()){
-            result=Integer.parseInt(matcher.group(1));
-        }
-        System.out.println(result);
+
+//        String resultstring="PrinterShare_Crack16.app";
+//        Pattern pattern=Pattern.compile(".*?(\\d+).+");
+//        Matcher matcher=pattern.matcher(resultstring);
+//        if(matcher.find()){
+//            result=Integer.parseInt(matcher.group(1));
+//        }
+//        System.out.println(result);
+//        String result="";
+//        String poef=Util_File.inputStream2String(new File("D:\\AppAy3.0\\Pdf\\Sharket3.5.filter"));
+//        String[] poefs = poef.split("\n");
+//        for (int i = 0; i <poefs.length ; i++) {
+//            if(poefs[i].contains("HasExplicitMod")){
+//                String[] mods=poefs[i].replace("HasExplicitMod","").trim().split("\"");
+//                result.trim();
+//                for (int j = 0; j <mods.length ; j++) {
+//                    if(!"".equals(mods[j].trim())){
+//                        //                    System.out.println(mods[j].trim());
+//                        result=result.replace(" \""+mods[j].trim()+"\"","").trim();
+//                        result=result+" "+"\""+mods[j].trim()+"\"";
+//                    }
+//
+//                }
+////                System.out.println(result);
+//            }
+//
+//        }
+//        System.out.println(result);
 
 
+//        try {
+//            File source_jan_file=new File("D:\\TTP\\stat_descriptions.txt");
+//
+//            String source_jan_file_charSet="UnicodeLittle";
+//
+//            File target_fan_file=new File("D:\\TTP\\stat_descriptions2.txt");
+//
+//            String target_fan_file_charSet="UnicodeLittle";
+//
+//            //获得繁体-简体转换器
+//            ChineseJF chinesdJF = CJFBeanFactory.getChineseJF();
+//
+//            long useTime = chinesdJF.chineseFan2Jan(source_jan_file, source_jan_file_charSet, target_fan_file, target_fan_file_charSet);
+//
+//            System.out.println("繁体文件->简体文件 ，用时：[ "+useTime+" ] ms");
+//        } catch (Exception e) {
+//            // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        }
 
-
-
+        System.out.println("5c6bf34df59a495bb2310895a93e6df4".length());
 
 
 

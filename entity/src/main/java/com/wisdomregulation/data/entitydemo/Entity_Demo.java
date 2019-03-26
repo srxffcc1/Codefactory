@@ -1,5 +1,6 @@
 package com.wisdomregulation.data.entitydemo;
 
+import com.sun.org.apache.xml.internal.serialize.LineSeparator;
 import com.wisdomregulation.data.entitybase.Base_Entity;
 
 import java.util.ArrayList;
@@ -25,4 +26,5 @@ public class Entity_Demo extends Base_Entity {
 	protected boolean canaddlist() {
 		return true;
 	}
+
 }

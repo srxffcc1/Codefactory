@@ -98,6 +98,19 @@ public abstract class PdfFactory {
      * 公章抬头 可以自行set修改
      */
     public String postmark="安全生产监督管理部门（公章）";
+    /**
+     * 卷首部门
+     */
+    public String department="安全生产监督管理局";
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public PdfFactory setDepartment(String department) {
+        this.department = department;
+        return this;
+    }
 
     public String getPostmark() {
         return postmark;
@@ -367,28 +380,15 @@ public abstract class PdfFactory {
                 Object image = tmpbooklist.get(i).getExtraSeal();
                 try {
                     book.resetKey();
-                    Method printm = getFactory().getClass().getDeclaredMethod("printer" + book.getClass().getSimpleName(), Base_Entity.class, Object.class);
-                    printm.setAccessible(true);
-                    printm.invoke(getFactory(), book, image);
-                    book.resetKey();
-                } catch (Exception e) {
-                    try {
-                        book.resetKey();
-                        Method printm = getFactory().getClass().getSuperclass().getDeclaredMethod("printer" + book.getClass().getSimpleName(), Base_Entity.class, Object.class);
+                    Method printm = findMethod(getFactory().getClass(),"printer" + book.getClass().getSimpleName(), Base_Entity.class, Object.class);
+                    if(printm!=null){
                         printm.setAccessible(true);
                         printm.invoke(getFactory(), book, image);
-                        book.resetKey();
-                    } catch (NoSuchMethodException e1) {
-                        e1.printStackTrace();
-                    } catch (SecurityException e1) {
-                        e1.printStackTrace();
-                    } catch (IllegalAccessException e1) {
-                        e1.printStackTrace();
-                    } catch (IllegalArgumentException e1) {
-                        e1.printStackTrace();
-                    } catch (InvocationTargetException e1) {
-                        e1.printStackTrace();
                     }
+                    book.resetKey();
+                } catch (Exception e) {
+                    e.printStackTrace();
+
                 }
             }
 
@@ -441,28 +441,15 @@ public abstract class PdfFactory {
                         Object image = tmpbooklist.get(i).getExtraSeal();
                         try {
                             book.resetKey();
-                            Method printm = getFactory().getClass().getDeclaredMethod("printer" + book.getClass().getSimpleName(), Base_Entity.class, Object.class);
-                            printm.setAccessible(true);
-                            printm.invoke(getFactory(), book, image);
-                            book.resetKey();
-                        } catch (Exception e) {
-                            try {
-                                book.resetKey();
-                                Method printm = getFactory().getClass().getSuperclass().getDeclaredMethod("printer" + book.getClass().getSimpleName(), Base_Entity.class, Object.class);
+                            Method printm = findMethod(getFactory().getClass(),"printer" + book.getClass().getSimpleName(), Base_Entity.class, Object.class);
+                            if(printm!=null){
                                 printm.setAccessible(true);
                                 printm.invoke(getFactory(), book, image);
-                                book.resetKey();
-                            } catch (NoSuchMethodException e1) {
-                                e1.printStackTrace();
-                            } catch (SecurityException e1) {
-                                e1.printStackTrace();
-                            } catch (IllegalAccessException e1) {
-                                e1.printStackTrace();
-                            } catch (IllegalArgumentException e1) {
-                                e1.printStackTrace();
-                            } catch (InvocationTargetException e1) {
-                                e1.printStackTrace();
                             }
+                            book.resetKey();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+
                         }
                     }
 
@@ -485,7 +472,21 @@ public abstract class PdfFactory {
         }
         return this;
     }
+    //找到继承里的环节方法
+    public static Method findMethod(Class cl,String name, Class<?>... parameterTypes){
+        Method printm=null;
+        if(cl.getSimpleName().equals("Object")){
+            return null;
+        }else{
+            try {
+                printm = cl.getDeclaredMethod(name,parameterTypes);
 
+            }catch (Exception e){
+                printm=findMethod(cl.getSuperclass(),name,parameterTypes);
+            }
+        }
+        return printm;
+    }
 
     /**
      * 输出成pdf的管理方法 带签章
@@ -7712,7 +7713,7 @@ public abstract class PdfFactory {
                 title.setAlignment(Element.ALIGN_CENTER);// 居中
                 Phrase titlePhrase = new Phrase();
                 titlePhrase.add(ChunkFactory.underLine(book.push(), "呼和浩特", simhei_z1));
-                titlePhrase.add(new Chunk("安全生产监督管理局", simhei_z1));
+                titlePhrase.add(new Chunk(getDepartment(), simhei_z1));
                 title.add(titlePhrase);
                 document.add(title);// 写入文档
                 document.add(space2);

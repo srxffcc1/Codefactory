@@ -890,7 +890,7 @@ public class PdfFactoryHZ extends PdfFactory {
                 title.setAlignment(Element.ALIGN_CENTER);// 居中
                 Phrase titlePhrase = new Phrase();
                 titlePhrase.add(ChunkFactory.underLine(book.push(), "呼和浩特", simhei_z1));
-                titlePhrase.add(new Chunk("安全生产监督管理局", simhei_z1));
+                titlePhrase.add(new Chunk(getDepartment(), simhei_z1));
                 title.add(titlePhrase);
                 document.add(title);// 写入文档
                 document.add(space2);

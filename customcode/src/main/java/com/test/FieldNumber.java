@@ -14,23 +14,24 @@ public class FieldNumber {
     private static List<String> fieldnamelsitchinese = new ArrayList<String>();
 
     public static void main(String[] args) {
-        Util_File.getFiles("D:\\App\\Tmp", "", new CallBack() {
-            @Override
-            public void back(Object... object) {
-                File file= (File) object[0];
-                System.out.println(file.getName());
-                String filecontent= Util_File.inputStream2String(file);
-                Pattern p = Pattern.compile("fieldnamelsitchinese.add\\((.*)\\);");
-                Matcher m=p.matcher(filecontent);
-                int index=0;
-                while (m.find()){
-                    String tmpstring=m.group();
-                    filecontent=filecontent.replaceFirst(Util_String.washString(tmpstring),tmpstring+"//"+index);
-                    index++;
-                }
-                Util_File.string2Stream(filecontent,file.getAbsolutePath());
-            }
-        });
+//        Util_File.getFiles("D:\\App\\Tmp", "", new CallBack() {
+//            @Override
+//            public void back(Object... object) {
+//                File file= (File) object[0];
+//                System.out.println(file.getName());
+//                String filecontent= Util_File.inputStream2String(file);
+//                Pattern p = Pattern.compile("fieldnamelsitchinese.add\\((.*)\\);");
+//                Matcher m=p.matcher(filecontent);
+//                int index=0;
+//                while (m.find()){
+//                    String tmpstring=m.group();
+//                    filecontent=filecontent.replaceFirst(Util_String.washString(tmpstring),tmpstring+"//"+index);
+//                    index++;
+//                }
+//                Util_File.string2Stream(filecontent,file.getAbsolutePath());
+//            }
+//        });
+        dep();
     }
 
     private static void dep() {

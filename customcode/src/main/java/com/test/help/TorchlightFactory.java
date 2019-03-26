@@ -1,5 +1,7 @@
 package com.test.help;
 
+import cn.com.cjf.CJFBeanFactory;
+import cn.com.cjf.ChineseJF;
 import com.codefactory.abstracts.ParseBase;
 import com.codefactory.intface.CallBack;
 import com.codefactory.node.DatNode;
@@ -156,27 +158,27 @@ public class TorchlightFactory {
     /**
      * 简体转繁体
      */
-//	private static void jt2ft() {
-//		try {
-//			File source_jan_file=new File("TRANSLATION.DAT");
-//
-//			String source_jan_file_charSet="UnicodeLittle";
-//
-//			File target_fan_file=new File("TRANSLATIONF.DAT");
-//
-//			String target_fan_file_charSet="UnicodeLittle";
-//
-//			//获得繁体-简体转换器
-//			ChineseJF chinesdJF = CJFBeanFactory.getChineseJF();
-//
-//			long useTime = chinesdJF.chineseJan2Fan(source_jan_file, source_jan_file_charSet, target_fan_file, target_fan_file_charSet);
-//
-//			System.out.println("简体文件->繁体文件 ，用时：[ "+useTime+" ] ms");
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//	}
+	private static void jt2ft() {
+		try {
+			File source_jan_file=new File("TRANSLATION.DAT");
+
+			String source_jan_file_charSet="UnicodeLittle";
+
+			File target_fan_file=new File("TRANSLATIONF.DAT");
+
+			String target_fan_file_charSet="UnicodeLittle";
+
+			//获得繁体-简体转换器
+			ChineseJF chinesdJF = CJFBeanFactory.getChineseJF();
+
+			long useTime = chinesdJF.chineseJan2Fan(source_jan_file, source_jan_file_charSet, target_fan_file, target_fan_file_charSet);
+
+			System.out.println("简体文件->繁体文件 ，用时：[ "+useTime+" ] ms");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
     /**
      * 获得需要翻译的条目

@@ -70,6 +70,9 @@ public class Shop_List {
                 +"import java.util.Date;\n"
                 +"import java.util.HashMap;\n"
                 +"import java.util.List;\n"
+                + "/**\n"
+                +" * "+classannotationstring.split(";")[0].trim()+"\n"
+                +" */\n"
                 +"public class List_Activity_"+classname+" extends Activity implements OnClickListener {\n"
                 +"private int Page = 1;\n"
                 +"private int Count = 1;\n"
@@ -91,7 +94,7 @@ public class Shop_List {
                 +"private Button down;\n"
                 +"private TextView yeshu;\n"
                 +"private TextView total;\n"
-                +"private String URL_LIST=\"\";\n"
+                +"private String URL_LIST=\"请填写URL\";\n"
                 +"private List<"+classname+"> mDataList = new ArrayList<>();\n"
                 +"HashMap<Integer, Boolean> isOpenMap = new HashMap<>();\n"
                 +"protected void onCreate(Bundle savedInstanceState) {\n"
@@ -177,32 +180,33 @@ public class Shop_List {
                 +"} else {\n"
                 +"holder = (ViewHolder) convertView.getTag();\n"
                 +"}\n"
-                +"holder.sub_layout.getViewTreeObserver().addOnGlobalLayoutListener(\n"
-                +"new ViewTreeObserver.OnGlobalLayoutListener() {\n"
-                +"public void onGlobalLayout() {\n"
-                +"if (mHiddenViewMeasuredHeight == 0) {\n"
-                +"mHiddenViewMeasuredHeight = holder.sub_layout.getHeight();\n"
-                +"}\n"
-                +"holder.sub_layout.getViewTreeObserver().removeOnGlobalLayoutListener(this);\n"
-                +"ZhiFaJianCha_Anim.rebuild(holder.jiantou, holder.sub_layout, isOpenMap.get(position), mHiddenViewMeasuredHeight);\n"
-                +"}\n"
-                +"});\n"
-                +"if (mHiddenViewMeasuredHeight > 0) {\n"
-                +"ZhiFaJianCha_Anim.rebuild(holder.jiantou, holder.sub_layout, isOpenMap.get(position), mHiddenViewMeasuredHeight);\n"
-                +"}\n"
-                +"final View finalConvertView = convertView;\n"
-                +"holder.root_layout.setOnClickListener(new OnClickListener() {\n"
-                +"public void onClick(View v) {\n"
-                +"isOpenMap.put(position, ZhiFaJianCha_Anim.RotateImg(holder.jiantou, holder.sub_layout, isOpenMap.get(position), mHiddenViewMeasuredHeight));\n"
-                +"ZhiFaJianCha_Anim.afterAnimItemScrollToEnd(parent, mList, finalConvertView, 300);\n"
-                +"}\n"
-                +"});\n"
+                +parseBean(classname,lineMenus)
+                +"//holder.sub_layout.getViewTreeObserver().addOnGlobalLayoutListener(\n"
+                +"//new ViewTreeObserver.OnGlobalLayoutListener() {\n"
+                +"//public void onGlobalLayout() {\n"
+                +"//if (mHiddenViewMeasuredHeight == 0) {\n"
+                +"//mHiddenViewMeasuredHeight = holder.sub_layout.getHeight();\n"
+                +"//}\n"
+                +"//holder.sub_layout.getViewTreeObserver().removeOnGlobalLayoutListener(this);\n"
+                +"//ZhiFaJianCha_Anim.rebuild(holder.jiantou, holder.sub_layout, isOpenMap.get(position), mHiddenViewMeasuredHeight);\n"
+                +"//}\n"
+                +"//});\n"
+                +"//if (mHiddenViewMeasuredHeight > 0) {\n"
+                +"//ZhiFaJianCha_Anim.rebuild(holder.jiantou, holder.sub_layout, isOpenMap.get(position), mHiddenViewMeasuredHeight);\n"
+                +"//}\n"
+                +"//final View finalConvertView = convertView;\n"
+                +"//holder.root_layout.setOnClickListener(new OnClickListener() {\n"
+                +"//public void onClick(View v) {\n"
+                +"//isOpenMap.put(position, ZhiFaJianCha_Anim.RotateImg(holder.jiantou, holder.sub_layout, isOpenMap.get(position), mHiddenViewMeasuredHeight));\n"
+                +"//ZhiFaJianCha_Anim.afterAnimItemScrollToEnd(parent, mList, finalConvertView, 300);\n"
+                +"//}\n"
+                +"//});\n"
                 +"return convertView;\n"
                 +"}\n"
                 +"class ViewHolder {\n"
                 +"ImageView jiantou;\n"
                 +"RelativeLayout root_layout;\n"
-                +"RelativeLayout sub_layout;\n"
+                +"LinearLayout sub_layout;\n"
                 +parseHolderInit(classname,lineMenus)
                 +"}\n"
                 +"}\n"
@@ -284,6 +288,19 @@ public class Shop_List {
         Util_File.string2Stream(javatempelt, "apps/java/com/activity/List_Activity_" + classname + ".java");
     }
 
+    private String parseBean(String classname, List<LineMenu> lineMenus) {
+        String result="final "+classname+" bean=mDataList.get(position);\n";
+
+        String[] shows=new LineMenu().getListShow(classannotationstring);
+
+        if(shows!=null){
+            for (int i = 0; i <shows.length ; i++) {
+                result=result+"holder."+shows[i]+".setText(\""+new LineMenu().findAnnotionstring(lineMenus,shows[i])+"\"+bean."+shows[i]+");\n";
+            }
+        }
+        return result;
+    }
+
     private String parseHolderInit(String classname, List<LineMenu> lineMenus) {
         String[] functions=new LineMenu().getListFunction(classannotationstring);
         String[] shows=new LineMenu().getListShow(classannotationstring);
@@ -309,7 +326,7 @@ public class Shop_List {
         String[] functions=new LineMenu().getListFunction(classannotationstring);
         String[] shows=new LineMenu().getListShow(classannotationstring);
         String result="holder.root_layout=(RelativeLayout) convertView.findViewById(R.id.root_layout);\n" +
-                      "holder.sub_layout = (RelativeLayout) convertView.findViewById(R.id.sub_layout);\n\n" +
+                      "holder.sub_layout = (LinearLayout) convertView.findViewById(R.id.sub_layout);\n\n" +
                       "holder.jiantou= (ImageView) convertView.findViewById(R.id.jiantou);\n" +
                 "                holder.title= (TextView) convertView.findViewById(R.id.title);\n" +
                 "                holder.childtitle= (TextView) convertView.findViewById(R.id.childtitle);\n";
@@ -339,9 +356,9 @@ public class Shop_List {
             for (int i = 0; i <functions.length ; i++) {
                 ParseBase cellvalue=cellline.findNodeByProperty("android:id=\"@\\+id/function\"").copy();
                 cellvalue.addProperty("android:text",functions[i]);
-                if(i!=0){
-                    cellvalue.addProperty("android:layout_below","@+id/function_"+(i-1));
-                }
+//                if(i!=0){
+//                    cellvalue.addProperty("android:layout_below","@+id/function_"+(i-1));
+//                }
                 cellvalue.addProperty("android:id","@+id/function_"+i);
                 layoutxml.addNodeToAlreadyNodeByProperty("android:id=\"@\\+id/functionlayout\"",cellvalue);
             }

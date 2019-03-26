@@ -85,18 +85,19 @@ public class PdfTestTz {
 		final Base_Entity bookentity47 = new Entity_Book_2017_47();
 		final Base_Entity bookentity48 = new Entity_Book_2017_48();
 		PdfFactoryTZ.create().setPostmark("淮安市洪泽区安全生产监督管理局");
+		PdfFactoryTZ.create().setDepartment("应急管理部");
         PdfFactoryTZ.create().setFileout("testTZ.pdf");
         PdfFactoryTZ.create().setTTFpath("/Users/apple/安元");
         PdfFactoryTZ.create().openNoFooter();
 //				Help_Pdf2017.create().printerBookTest(new Base_Entity(),null);
 //        PdfFactoryTZ.create().printerMaster(bookentity0);
 //        PdfFactoryTZ.create().printerMaster(bookentity1);
-        PdfFactoryTZ.create().printerMaster(bookentity2);
-        PdfFactoryTZ.create().printerMaster(bookentity3);
+//        PdfFactoryTZ.create().printerMaster(bookentity2);
+//        PdfFactoryTZ.create().printerMaster(bookentity3);
 //        PdfFactoryTZ.create().printerMaster(bookentity4);
 //        PdfFactoryTZ.create().printerMaster(bookentity49);
 //        PdfFactoryTZ.create().printerMaster(bookentity50);
-        PdfFactoryTZ.create().printerMaster(bookentity5);
+//        PdfFactoryTZ.create().printerMaster(bookentity5);
 //        PdfFactoryTZ.create().printerMaster(bookentity6);
 //        PdfFactoryTZ.create().printerMaster(bookentity7);
 //        PdfFactoryTZ.create().printerMaster(bookentity8);
@@ -122,7 +123,7 @@ public class PdfTestTz {
 //        PdfFactoryTZ.create().printerMaster(bookentity28);
 //        PdfFactoryTZ.create().printerMaster(bookentity29);
 //        PdfFactoryTZ.create().printerMaster(bookentity30);
-        PdfFactoryTZ.create().printerMaster(bookentity31);
+//        PdfFactoryTZ.create().printerMaster(bookentity31);
 //        PdfFactoryTZ.create().printerMaster(bookentity32);
 //        PdfFactoryTZ.create().printerMaster(bookentity33);
 //        PdfFactoryTZ.create().printerMaster(bookentity34);
@@ -138,7 +139,7 @@ public class PdfTestTz {
 //        PdfFactoryTZ.create().printerMaster(bookentity44);
 //        PdfFactoryTZ.create().printerMaster(bookentity45);
 //        PdfFactoryTZ.create().printerMaster(bookentity46);
-//        PdfFactoryTZ.create().printerMaster(bookentity47);
+        PdfFactoryTZ.create().printerMaster(bookentity47);
 //        PdfFactoryTZ.create().printerMaster(bookentity48);
         PdfFactoryTZ.create().close(new IPdfBack() {
             @Override

@@ -9,9 +9,12 @@ repositories {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile project(':helppdf')
-//    compile project(':javacommon')
+    compile project(':javacommon')
 //    // https://mvnrepository.com/artifact/com.qcloud/cos_api
 //    compile group: 'com.qcloud', name: 'cos_api', version: '5.4.9'
 
-    compile 'com.sixdown.javacommon:javacommon:1.0.4'
+//    compile 'com.sixdown.javacommon:javacommon:1.0.4'
+}
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
 }

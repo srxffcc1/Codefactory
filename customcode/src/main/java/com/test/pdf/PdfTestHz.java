@@ -5,6 +5,7 @@ import com.wisdomregulation.data.entitybook2017.*;
 import com.wisdomregulation.pdflink.IPdfBack;
 import com.wisdomregulation.pdflink.PdfFactoryLog;
 import com.wisdomregulation.shark.PdfFactoryHZ;
+import com.wisdomregulation.shark.PdfFactoryTZ;
 
 public class PdfTestHz {
     public static void main(String[] args) {
@@ -171,6 +172,8 @@ public class PdfTestHz {
                 "@序号40#文件编号#日期#页号#备住");
         final Base_Entity bookentity48 = new Entity_Book_2017_48();
 //        PdfFactoryLog.needlog=true;
+        PdfFactoryHZ.create().setPostmark("淮安市洪泽区安全生产监督管理局");
+        PdfFactoryHZ.create().setDepartment("应急管理部");
         PdfFactoryHZ.create().setFileout("testHZ.pdf");
         PdfFactoryHZ.create().setTTFpath("Font");
         PdfFactoryHZ.create().setFoottype(1);
@@ -191,7 +194,7 @@ public class PdfTestHz {
 //        PdfFactoryHZ.create().printerMasterTest(bookentity12);
 //        PdfFactoryHZ.create().printerMasterTest(bookentity13);
 //        PdfFactoryHZ.create().printerMasterTest(bookentity14);
-//        PdfFactoryHZ.create().printerMaster(bookentity15);
+        PdfFactoryHZ.create().printerMaster(bookentity15);
 //        PdfFactoryHZ.create().printerMasterTest(bookentity16);
 //        PdfFactoryHZ.create().printerMasterTest(bookentity17);
 //        PdfFactoryHZ.create().printerMasterTest(bookentity18);
@@ -199,7 +202,7 @@ public class PdfTestHz {
 //        PdfFactoryHZ.create().printerMasterTest(bookentity20);
 //        PdfFactoryHZ.create().printerMasterTest(bookentity21);
 //        PdfFactoryHZ.create().printerMasterTest(bookentity22);
-        PdfFactoryHZ.create().printerMasterTest(bookentity23.setExtraObj(""));
+//        PdfFactoryHZ.create().printerMasterTest(bookentity23.setExtraObj(""));
 //        PdfFactoryHZ.create().printerMasterTest(bookentity23.setExtraObj(null));
 //        PdfFactoryHZ.create().printerMasterTest(bookentity24);
 //        PdfFactoryHZ.create().printerMasterTest(bookentity25);
@@ -225,7 +228,7 @@ public class PdfTestHz {
 //        PdfFactoryHZ.create().printerMaster(bookentity45);
 //        PdfFactoryHZ.create().printerMaster(bookentity46);
 //        PdfFactoryHZ.create().printerMaster(bookentity47);
-//        PdfFactoryHZ.create().printerMasterTest(bookentity48);
+//        PdfFactoryHZ.create().printerMaster(bookentity48);
         PdfFactoryHZ.create().close(new IPdfBack() {
             @Override
             public void writeError() {
