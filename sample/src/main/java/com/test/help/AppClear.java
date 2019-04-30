@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
 public class AppClear {
     public static boolean needdelete=true;
     public static void main(String[] args) {
-        String apppath="D:\\AppAy3.0\\Aynj\\jianyeyidongzhifa_feidisanfang_j";
+        String apppath="D:\\APP\\Shopping\\app";
         deleteLayout(apppath);
         deletePng(apppath);
 //        String sss=Util_File.inputStream2String("D:\\AppAy3.0\\AyJn\\app\\src\\main\\java\\com\\android\\yidongzhifa\\activity\\AnjianxinxiFenleiActivity.java");
@@ -32,11 +32,13 @@ public class AppClear {
             public void back(Object... object) {
                 File file = (File) object[0];
                 String filecontent=Util_File.inputStream2String(file);
+//                System.out.println(file.getName());
 //                String filecontent="R.layout.simple_list_item_1, new String[]{\"name\"}";
-                Pattern pattern=Pattern.compile("R\\.layout\\.(.*?)[\\)|,]");
+                Pattern pattern=Pattern.compile(".*R\\.layout\\.(.*?)[\\)|,|;]");
                 Matcher matcher=pattern.matcher(filecontent);
                 while (matcher.find()){
                     String resultlayout=matcher.group(1).split(",")[0].trim();
+                    System.out.println(resultlayout);
                     javalauout.put(resultlayout,true);
                 }
             }

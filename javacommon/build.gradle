@@ -9,10 +9,10 @@ repositories {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile group: 'org.apache.poi', name: 'poi', version: '3.16'
-    compile group: 'org.apache.poi', name: 'poi-ooxml', version: '3.16'
-    compile group: 'org.apache.poi', name: 'poi-scratchpad', version: '3.16'
-    compile group: 'org.apache.poi', name: 'poi-ooxml-schemas', version: '3.16'
+    compile group: 'org.apache.poi', name: 'poi', version: '3.17'
+    compile group: 'org.apache.poi', name: 'poi-ooxml', version: '3.17'
+    compile group: 'org.apache.poi', name: 'poi-scratchpad', version: '3.17'
+    compile group: 'org.apache.poi', name: 'poi-ooxml-schemas', version: '3.17'
 // https://mvnrepository.com/artifact/org.json/json
     compile group: 'org.json', name: 'json', version: '20170516'
 
