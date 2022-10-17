@@ -340,34 +340,27 @@ public class Util_Pdf {
                     List<XWPFTableCell> tabledocCells = rowdocs.get(i).getTableCells();
                     for (int j = 0; j < tabledocCells.size(); j++) {
                         CTTcPr tcpr = tabledocCells.get(j).getCTTc().getTcPr();
-
-
                         if (tcpr.getVMerge() != null && tcpr.getVMerge().getVal() == null) {//说明是合并行 不add
                             continue;
                         }
                         System.out.println("PdfPCell cell_" + x + "=new PdfPCell();");
                         if (tcpr.getVMerge() == null) {//说明这是正常行
-
                         }
                         if (tcpr.getGridSpan() != null) {
                             int shouldcol = tcpr.getGridSpan().getVal().intValue();
                             System.out.println("cell_" + x + ".setColspan(" + shouldcol + ");");
-
                         }
                         if (tcpr.getVMerge() != null && tcpr.getVMerge().getVal() != null && tcpr.getVMerge().getVal().toString() == "restart") {//说明我要合并了
                             int shouldrow = getShouldSetRow(rowdocs, i, j);
                             System.out.println("cell_" + x + ".setRowspan(" + shouldrow + ");");
-
                         }
                         float heighttmp = (float) (height / 19.8);
                         System.out.println("cell_" + x + ".setFixedHeight(" + heighttmp + "f);");
                         System.out.println("table.addCell(cell_" + x + ");");
                         x++;
-
                     }
                 }
                 System.out.println("document.add(table);");
-
             }
         } catch (Exception e) {
             e.printStackTrace();

@@ -13,7 +13,7 @@ public class PdfCoreHelp {
     }
     public static void test2(){//对于有表格的就需要两个都使用
         Util_Pdf.word2pdfall("D:\\App\\Codefactory\\2017doc\\2016年执法文件式样_3.doc",12);
-        Util_Pdf.word2pdftablecode("D:\\App\\Codefactory\\2017doc\\2016年执法文件式样_3.doc");
+//        Util_Pdf.word2pdftablecode("D:\\App\\Codefactory\\2017doc\\2016年执法文件式样_3.doc");
     }
 
 }

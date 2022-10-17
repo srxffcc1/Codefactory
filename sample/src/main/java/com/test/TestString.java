@@ -3,6 +3,9 @@ package com.test;
 import com.codefactory.abstracts.ParseBase;
 import com.codefactory.node.XmlNode;
 import com.codefactory.utils.Util_File;
+import com.google.gson.Gson;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
@@ -11,6 +14,7 @@ import java.io.*;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -43,21 +47,50 @@ public class TestString {
 //            xcyj=xcyj+matcher.group(1);
 //        }
 //        System.out.println(xcyj);
-        String org = "颜色:白色;品种:红富士;重量:10kg";
-//        List<String> result= Arrays.asList(org.split(";"));
-//        for (int i = 0; i <result.size() ; i++) {
+//        String org = "颜色:白色;品种:红富士;重量:10kg";
+////        List<String> result= Arrays.asList(org.split(";"));
+////        for (int i = 0; i <result.size() ; i++) {
+////            System.out.println(result.get(i));
+////        }
+//        List<String> result = new ArrayList<>();
+//        Pattern pattern = Pattern.compile(".*?:(.+?);");
+//        Matcher matcher = pattern.matcher(org + ";");
+//        while (matcher.find()) {
+//            result.add(matcher.group(1));
+//        }
+//        for (int i = 0; i < result.size(); i++) {
 //            System.out.println(result.get(i));
 //        }
-        List<String> result = new ArrayList<>();
-        Pattern pattern = Pattern.compile(".*?:(.+?);");
-        Matcher matcher = pattern.matcher(org + ";");
-        while (matcher.find()) {
-            result.add(matcher.group(1));
-        }
-        for (int i = 0; i < result.size(); i++) {
-            System.out.println(result.get(i));
+
+        JSONArray refundList = new JSONArray();
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("bizUserId","pro1137");
+        jsonObject.put("amount",880);
+        jsonObject.put("accountSetNo",401156);
+
+        refundList.put(jsonObject);
+
+        final BizParameter param = new BizParameter();
+        param.put("bizUserId", "pro2201220034820770");
+        param.put("bizOrderNo", "R2022060100003");
+        param.put("oriBizOrderNo", "20220525000141");
+        param.put("amount", 890);
+        param.put("refundType", "D0");
+        param.put("clientName", "allinpay.yunst.orderService.refund");
+        param.put("refundList", refundList);
+        param.put("refundId", "2093");
+        param.put("feeAmount", 10);
+
+        System.out.println(new Gson().toJson(param));
+
+
+
+    }
+    public static class BizParameter extends LinkedHashMap<String, Object> {
+        private static final long serialVersionUID = 1L;
+
+        public BizParameter() {
         }
 
     }
-
 }

@@ -14,7 +14,7 @@ public class Util_File {
 		try {
 			is = new FileInputStream(filePath);
 		} catch (Exception e) {
-
+			return null;
 		}
 		return inputStream2String(is,fileEncode);
 	}
